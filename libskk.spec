@@ -1,8 +1,8 @@
-# TODO: fep?
 #
 # Conditional build:
 %bcond_without	apidocs		# do not build and package API docs
 %bcond_without	static_libs	# don't build static libraries
+%bcond_without	fep		# fep client
 #
 Summary:	Library to deal with Japanese kana-to-kanji conversion method
 Summary(pl.UTF-8):	Biblioteka obsługi metody konwersji tekstu japońskiego kana do kanji
@@ -24,6 +24,10 @@ BuildRequires:	pkgconfig
 # not needed for releases
 #BuildRequires:	vala >= 2:0.14.0
 %{?with_apidocs:BuildRequires:	valadoc >= 0.3.1}
+%if %{with fep}
+BuildRequires:	libfep-devel >= 0.0.7
+BuildRequires:	vala-libfep >= 0.0.7
+%endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -33,6 +37,23 @@ method.
 %description -l pl.UTF-8
 libskk to biblioteka do obsługi metody konwersji tekstu japońśkiego
 kana do kanji.
+
+%package fep
+Summary:	skkfep - Japanese SKK input method on text terminal
+Summary(pl.UTF-8):	skkfep - metoda wprowadzania znaków japońskich SKK z terminala tekstowego
+Group:		Applications/Text
+Requires:	%{name} = %{version}-%{release}
+Requires:	libfep >= 0.0.7
+
+%description fep
+skkfep is a tool that allows to use Japanese input method called SKK
+(Simple Kana to Kanji conversion program) on ANSI compliant text
+terminals.
+
+%description fep -l pl.UTF-8
+skkfep to narzędzie pozwalające na używanie metody wprowadzania znaków
+japońskich SKK (Simple Kana to Kanji - konwersja uproszczonego kana do
+kanji) na terminalach tekstowych zgodnych z ANSI.
 
 %package devel
 Summary:	Header files for libskk library
@@ -90,8 +111,13 @@ Dokumentacja API biblioteki libskk.
 %setup -q
 
 %build
+# pass fake VALADOC_* args to avoid requiring valadoc-devel
+# (only utility is needed here, but configure checks for development package)
 %configure \
+	VALADOC_CFLAGS=fake \
+	VALADOC_LIBS=fake \
 	%{?with_apidocs:--enable-docs} \
+	%{?with_fep:--enable-fep} \
 	%{?with_static_libs:--enable-static}
 %{__make}
 
@@ -123,6 +149,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/libskk
 %{_mandir}/man1/skk.1*
 
+%if %{with fep}
+%files fep
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/skkfep
+%attr(755,root,root) %{_libdir}/skkfep-client
+%{_mandir}/man1/skkfep.1*
+%endif
+
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libskk.so
@@ -145,4 +179,6 @@ rm -rf $RPM_BUILD_ROOT
 %files apidocs
 %defattr(644,root,root,755)
 %{_gtkdocdir}/libskk
+# should it be here?
+%{_datadir}/devhelp/references/libskk
 %endif
