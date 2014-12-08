@@ -7,19 +7,19 @@
 Summary:	Library to deal with Japanese kana-to-kanji conversion method
 Summary(pl.UTF-8):	Biblioteka obsługi metody konwersji tekstu japońskiego kana do kanji
 Name:		libskk
-Version:	1.0.0
-Release:	2
+Version:	1.0.2
+Release:	1
 License:	GPL v3+
 Group:		Libraries
 #Source0Download: https://github.com/ueno/libskk/downloads
-Source0:	https://github.com/downloads/ueno/libskk/%{name}-%{version}.tar.gz
-# Source0-md5:	4318fabf49041950cabb0ed1d5bf286a
+Source0:	https://github.com/ueno/libskk/releases/download/%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	26d5fedd29add95faae53dc90487330d
 URL:		https://github.com/ueno/libskk/
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 2.0
 BuildRequires:	gobject-introspection-devel >= 0.9.0
 BuildRequires:	json-glib-devel
-BuildRequires:	libgee0.6-devel
+BuildRequires:	libgee-devel
 BuildRequires:	pkgconfig
 # not needed for releases
 #BuildRequires:	vala >= 2:0.14.0
