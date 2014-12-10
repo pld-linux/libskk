@@ -63,7 +63,7 @@ Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2-devel >= 2.0
 Requires:	json-glib-devel
-Requires:	libgee0.6-devel
+Requires:	libgee-devel
 
 %description devel
 Header files for libskk library.
@@ -89,7 +89,7 @@ Summary(pl.UTF-8):	API języka Vala do biblioteki libskk
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Requires:	vala >= 2:0.14.0
-Requires:	vala-libgee0.6
+Requires:	vala-libgee
 
 %description -n vala-libskk
 Vala API for libskk library.
