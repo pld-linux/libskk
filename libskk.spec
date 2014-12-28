@@ -15,7 +15,7 @@ Group:		Libraries
 Source0:	https://github.com/ueno/libskk/releases/download/%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	26d5fedd29add95faae53dc90487330d
 URL:		https://github.com/ueno/libskk/
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 2.0
 BuildRequires:	gobject-introspection-devel >= 0.9.0
 BuildRequires:	json-glib-devel
