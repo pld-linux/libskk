@@ -3,12 +3,12 @@
 %bcond_without	apidocs		# do not build and package API docs
 %bcond_without	static_libs	# don't build static libraries
 %bcond_without	fep		# fep client
-#
+
 Summary:	Library to deal with Japanese kana-to-kanji conversion method
 Summary(pl.UTF-8):	Biblioteka obsługi metody konwersji tekstu japońskiego kana do kanji
 Name:		libskk
 Version:	1.0.2
-Release:	3
+Release:	4
 License:	GPL v3+
 Group:		Libraries
 #Source0Download: https://github.com/ueno/libskk/downloads
@@ -101,6 +101,9 @@ API języka Vala do biblioteki libskk.
 Summary:	libskk API documentation
 Summary(pl.UTF-8):	Dokumentacja API biblioteki libskk
 Group:		Documentation
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description apidocs
 API and internal documentation for libskk library.
