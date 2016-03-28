@@ -8,7 +8,7 @@ Summary:	Library to deal with Japanese kana-to-kanji conversion method
 Summary(pl.UTF-8):	Biblioteka obsługi metody konwersji tekstu japońskiego kana do kanji
 Name:		libskk
 Version:	1.0.2
-Release:	4
+Release:	5
 License:	GPL v3+
 Group:		Libraries
 #Source0Download: https://github.com/ueno/libskk/downloads
@@ -90,6 +90,9 @@ Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Requires:	vala >= 2:0.14.0
 Requires:	vala-libgee
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description -n vala-libskk
 Vala API for libskk library.
