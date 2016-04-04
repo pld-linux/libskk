@@ -11,7 +11,7 @@ Version:	1.0.2
 Release:	5
 License:	GPL v3+
 Group:		Libraries
-#Source0Download: https://github.com/ueno/libskk/downloads
+#Source0Download: https://github.com/ueno/libskk/releases
 Source0:	https://github.com/ueno/libskk/releases/download/%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	26d5fedd29add95faae53dc90487330d
 URL:		https://github.com/ueno/libskk/
