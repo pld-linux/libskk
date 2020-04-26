@@ -1,34 +1,38 @@
 #
 # Conditional build:
-%bcond_without	apidocs		# do not build and package API docs
-%bcond_without	static_libs	# don't build static libraries
+%bcond_without	apidocs		# valadoc/devhelp based API documentation
+%bcond_without	static_libs	# static library
 %bcond_without	fep		# fep client
 
 Summary:	Library to deal with Japanese kana-to-kanji conversion method
 Summary(pl.UTF-8):	Biblioteka obsługi metody konwersji tekstu japońskiego kana do kanji
 Name:		libskk
-Version:	1.0.2
-Release:	5
+Version:	1.0.5
+Release:	1
 License:	GPL v3+
 Group:		Libraries
 #Source0Download: https://github.com/ueno/libskk/releases
-Source0:	https://github.com/ueno/libskk/releases/download/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	26d5fedd29add95faae53dc90487330d
+Source0:	https://github.com/ueno/libskk/releases/download/%{version}/%{name}-%{version}.tar.xz
+# Source0-md5:	683c5a2dd23171297132453afd62e3c4
 URL:		https://github.com/ueno/libskk/
-BuildRequires:	gettext-tools
-BuildRequires:	glib2-devel >= 2.0
+BuildRequires:	gettext-tools >= 0.19.8
+BuildRequires:	glib2-devel >= 1:2.36
 BuildRequires:	gobject-introspection-devel >= 0.9.0
 BuildRequires:	json-glib-devel
-BuildRequires:	libgee-devel
+BuildRequires:	libgee-devel >= 0.8
 BuildRequires:	pkgconfig
 # not needed for releases
 #BuildRequires:	vala >= 2:0.14.0
-%{?with_apidocs:BuildRequires:	valadoc >= 0.3.1}
+%{?with_apidocs:BuildRequires:	valadoc >= 0.40}
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	xorg-lib-libxkbcommon-devel
+BuildRequires:	xz
 %if %{with fep}
 BuildRequires:	libfep-devel >= 0.0.7
 BuildRequires:	vala-libfep >= 0.0.7
 %endif
-BuildRequires:	vala-libgee
+BuildRequires:	vala-libgee >= 0.8
+Requires:	glib2 >= 1:2.36
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -61,9 +65,9 @@ Summary:	Header files for libskk library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libskk
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 2.0
+Requires:	glib2-devel >= 1:2.36
 Requires:	json-glib-devel
-Requires:	libgee-devel
+Requires:	libgee-devel >= 0.8
 
 %description devel
 Header files for libskk library.
@@ -89,8 +93,8 @@ Summary(pl.UTF-8):	API języka Vala do biblioteki libskk
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Requires:	vala >= 2:0.14.0
-Requires:	vala-libgee
-%if "%{_rpmversion}" >= "5"
+Requires:	vala-libgee >= 0.8
+%if "%{_rpmversion}" >= "4.6"
 BuildArch:	noarch
 %endif
 
@@ -104,7 +108,7 @@ API języka Vala do biblioteki libskk.
 Summary:	libskk API documentation
 Summary(pl.UTF-8):	Dokumentacja API biblioteki libskk
 Group:		Documentation
-%if "%{_rpmversion}" >= "5"
+%if "%{_rpmversion}" >= "4.6"
 BuildArch:	noarch
 %endif
 
