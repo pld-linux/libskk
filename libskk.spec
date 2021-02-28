@@ -94,9 +94,7 @@ Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Requires:	vala >= 2:0.14.0
 Requires:	vala-libgee >= 0.8
-%if "%{_rpmversion}" >= "4.6"
 BuildArch:	noarch
-%endif
 
 %description -n vala-libskk
 Vala API for libskk library.
@@ -108,9 +106,7 @@ API języka Vala do biblioteki libskk.
 Summary:	libskk API documentation
 Summary(pl.UTF-8):	Dokumentacja API biblioteki libskk
 Group:		Documentation
-%if "%{_rpmversion}" >= "4.6"
 BuildArch:	noarch
-%endif
 
 %description apidocs
 API and internal documentation for libskk library.
