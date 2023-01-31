@@ -14,16 +14,21 @@ Group:		Libraries
 #Source0Download: https://github.com/ueno/libskk/releases
 Source0:	https://github.com/ueno/libskk/releases/download/%{version}/%{name}-%{version}.tar.xz
 # Source0-md5:	683c5a2dd23171297132453afd62e3c4
+Patch0:		%{name}-valadoc.patch
 URL:		https://github.com/ueno/libskk/
+BuildRequires:	autoconf >= 2.63
+BuildRequires:	automake >= 1:1.11.1
 BuildRequires:	gettext-tools >= 0.19.8
 BuildRequires:	glib2-devel >= 1:2.36
 BuildRequires:	gobject-introspection-devel >= 0.9.0
 BuildRequires:	json-glib-devel
 BuildRequires:	libgee-devel >= 0.8
+BuildRequires:	libtool >= 2:2
 BuildRequires:	pkgconfig
+BuildRequires:	rpm-build >= 4.6
 # not needed for releases
 #BuildRequires:	vala >= 2:0.14.0
-%{?with_apidocs:BuildRequires:	valadoc >= 0.40}
+%{?with_apidocs:BuildRequires:	valadoc >= 2:0.52}
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xorg-lib-libxkbcommon-devel
 BuildRequires:	xz
@@ -116,10 +121,16 @@ Dokumentacja API biblioteki libskk.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 # pass fake VALADOC_* args to avoid requiring valadoc-devel
 # (only utility is needed here, but configure checks for development package)
+%{__libtoolize}
+%{__aclocal} -I m4
+%{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure \
 	VALADOC_CFLAGS=fake \
 	VALADOC_LIBS=fake \

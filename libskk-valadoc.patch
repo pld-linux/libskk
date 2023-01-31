@@ -1,0 +1,11 @@
+--- libskk-1.0.5/docs/Makefile.am.orig	2018-09-15 09:12:57.000000000 +0200
++++ libskk-1.0.5/docs/Makefile.am	2023-01-30 21:26:02.655018069 +0100
+@@ -15,7 +15,7 @@ libskkgtkdocdir=$(datadir)/gtk-doc/html/
+ 
+ common_doc_files = \
+ 	*.css \
+-	*.png \
++	*.svg \
+ 	*.js \
+ 	index.htm \
+ 	*.html \
