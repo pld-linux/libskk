@@ -121,7 +121,7 @@ Dokumentacja API biblioteki libskk.
 
 %prep
 %setup -q
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 # pass fake VALADOC_* args to avoid requiring valadoc-devel
