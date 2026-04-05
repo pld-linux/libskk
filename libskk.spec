@@ -7,14 +7,13 @@
 Summary:	Library to deal with Japanese kana-to-kanji conversion method
 Summary(pl.UTF-8):	Biblioteka obsługi metody konwersji tekstu japońskiego kana do kanji
 Name:		libskk
-Version:	1.0.5
-Release:	2
+Version:	1.1.1
+Release:	1
 License:	GPL v3+
 Group:		Libraries
 #Source0Download: https://github.com/ueno/libskk/releases
 Source0:	https://github.com/ueno/libskk/releases/download/%{version}/%{name}-%{version}.tar.xz
-# Source0-md5:	683c5a2dd23171297132453afd62e3c4
-Patch0:		%{name}-valadoc.patch
+# Source0-md5:	dd98e7fae08b4419a1b56ede507e80a2
 URL:		https://github.com/ueno/libskk/
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.11.1
@@ -121,7 +120,6 @@ Dokumentacja API biblioteki libskk.
 
 %prep
 %setup -q
-%patch -P0 -p1
 
 %build
 # pass fake VALADOC_* args to avoid requiring valadoc-devel
